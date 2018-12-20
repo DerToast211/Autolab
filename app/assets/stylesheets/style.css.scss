@@ -1142,6 +1142,54 @@ div.center {
   display: inline-block;
 }
 
+div.exercise {
+
+  p {
+    font-size: 120%;
+    margin-bottom: 30px;
+  }
+
+  ul {
+    margin-bottom: 50px;
+  }
+
+  li.mc {
+    font-size: 120%;
+    display: flex;
+    div:first-of-type {
+      flex-grow: 1;
+    }
+    div:last-of-type {
+      label:first-of-type {
+        padding: 0px 25px 0px 30px
+      }
+      label:last-of-type {
+        padding: 0px 5px 0px 30px
+      }
+    }
+  }
+  
+  h1 {
+    font-weight: bold;
+    font-size: 1.64rem;
+    line-height: 110%;
+    margin: 0.82rem 0 20px 0;
+  }
+
+  div.subexercise {
+    
+    h1 {
+      font-weight: normal;
+      font-size: 1.64rem;
+      line-height: 110%;
+      margin: 0.82rem 0 0.656rem 0;
+    }
+
+  }
+
+}
+
+
 
 /* Restore hover functionality on Materialize buttons with color classes */
 .btn:hover {
