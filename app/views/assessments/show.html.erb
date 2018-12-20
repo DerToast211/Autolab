@@ -219,6 +219,7 @@
               var save = document.getElementById('results').innerHTML;
               console.log(save);
               document.getElementById("submission_embedded_quiz_form_answer").value = save;
+	
           }
 
       </script>
@@ -240,7 +241,7 @@
 
               <%# Render instructor's custom quiz form elements. %>
               <p>
-                <% begin %>
+                <% begin %> <!-- HIER -->
                     <%= @assessment.embedded_quiz_form_data.html_safe %>
                 <% rescue %>
                   <p style = "color: red">Your assessment has no content yet! </p>
@@ -290,4 +291,39 @@
       <%= link_to "See all submissions", {:action => "history"} %></li>
 
     <% end %>
+
+
+  <script>
+  window.onload = function fillOut() {
+
+    var submission_urls = document.getElementsByName("submission_download")
+    if(submission_urls.length == 0){
+      return;
+    }
+
+    var recent_submission_url = submission_urls[0].href
+
+
+    fetch(recent_submission_url).then((resp) => resp.json()).then((data) => {for(let key in data){
+
+      let form = document.getElementById(key)
+
+      if(form == null) {
+
+        if(data[key] == "true"){
+          form = document.getElementById(key + "_t")
+          if(form != null) {form.setAttribute("checked", "")}
+        } else if(data[key] == "false"){
+          form = document.getElementById(key + "_f")
+          if(form != null) {form.setAttribute("checked", "")}
+        }
+
+      } else {
+        form.value = data[key]
+      }
+    }})
+
+  }
+  </script>
   </div>
+
